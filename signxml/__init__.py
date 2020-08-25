@@ -9,7 +9,7 @@ from lxml.etree import Element, SubElement
 
 from cryptography.hazmat.primitives.asymmetric import dsa, ec, rsa, utils
 from cryptography.hazmat.primitives.asymmetric.padding import PKCS1v15
-from cryptography.hazmat.primitives.hashes import Hash, SHA1, SHA224, SHA256, SHA384, SHA512
+from cryptography.hazmat.primitives.hashes import Hash, SHA1, SHA224, SHA256, SHA384, SHA512, MD5
 from cryptography.hazmat.primitives.serialization import load_der_public_key
 from cryptography.hazmat.backends import default_backend
 
@@ -91,6 +91,7 @@ class XMLSignatureProcessor(XMLProcessor):
     schema_file = "xmldsig1-schema.xsd"
 
     known_digest_methods = {
+        namespaces.dsig_more + "md5": MD5,
         namespaces.ds + "sha1": SHA1,
         namespaces.xenc + "sha256": SHA256,
         namespaces.dsig_more + "sha224": SHA224,
